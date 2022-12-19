@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import TodoList from './Components/TodoList/TodoList';
+import Header from './Components/Layout/Header';
+import TodoForm from './Components/TodoForm/TodoForm';
+import UseApp from './useApp'
 
-function App() {
+export default function App() {
+  const [todoList, updateTodoList] = UseApp();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="row justify-content-center">
+        <div className="col-4">
+          <Header />
+          <TodoForm todoList={todoList} updateTodoList={updateTodoList}/>
+          <TodoList list={todoList}/>
+        </div>
+      </div>
+    </>
   );
 }
-
-export default App;
