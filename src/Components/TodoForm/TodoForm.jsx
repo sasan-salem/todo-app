@@ -1,11 +1,7 @@
-import { useState } from "react";
+import useTodoForm from "./useTodoForm";
 
 export default function TodoForm({ todoList, updateTodoList }) {
-  const [text, setText] = useState("");
-
-   function addToList(text) {
-        updateTodoList([...todoList, { id: todoList.length + 1, title: text }]); 
-    }
+  const [text, setText, addToList] = useTodoForm(todoList, updateTodoList);
 
   return (
     <div className="input-group mb-3">
