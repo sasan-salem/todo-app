@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.list-group{
+  display: flex !important;
+  flex-direction: column-reverse !important;
+}
+
+.list-group-item:last-child{
+  border-radius: 0!important;
+  border-top-left-radius: inherit !important;
+  border-top-right-radius: inherit !important;
+  border-top: 1px solid #ccc !important;
+}
+.list-group-item:first-child{
+  border-radius: 0!important;
+  border-bottom-left-radius: inherit !important;
+  border-bottom-right-radius: inherit !important;
+  border-top: none;
+}

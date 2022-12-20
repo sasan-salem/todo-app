@@ -2,9 +2,13 @@ import { useState } from "react";
 
 export default function TodoForm({ addToList }) {
   const [text, setText] = useState("");
-
+  const handleSubmitToDo = (e)=>{
+      e.preventDefault();
+      addToList(text)
+      setText("")
+  }
   return (
-    <div className="input-group mb-3">
+    <form className="input-group mb-3" onSubmit={handleSubmitToDo}>
       <input
         className="form-control"
         value={text}
@@ -13,11 +17,10 @@ export default function TodoForm({ addToList }) {
       />
       <button
         className="btn btn-outline-secondary"
-        type="button"
-        onClick={() => {addToList(text)}}
+        type="submit"
       >
         Insert
       </button>
-    </div>
+    </form>
   );
 }
