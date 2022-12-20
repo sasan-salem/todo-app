@@ -4,7 +4,7 @@ import TodoForm from "../../Components/TodoForm/TodoForm";
 import useTodo from "./useTodo";
 
 export default function Todo() {
-  const [todoList, addToList, removeFromList] = useTodo();
+  const [todoList, addToList, removeFromList, editFromList] = useTodo();
 
   return (
     <>
@@ -12,7 +12,7 @@ export default function Todo() {
         <div className="col-4">
           <Header />
           <TodoForm addToList={addToList} />
-          <TodoList todoList={todoList} removeFromList={removeFromList} />
+          <TodoList todoList={todoList} removeFromList={removeFromList} editFromList={editFromList}/>
         </div>
       </div>
     </>

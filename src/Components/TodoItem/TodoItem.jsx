@@ -1,22 +1,23 @@
-export default function TodoItem({ item, removeFromList }) {
+import { Button } from "../Elements/Button";
+import { PencilIcon, TrashIcon } from "../Elements/Icon";
+
+export default function TodoItem({ item, removeFromList, showModal }) {
   return (
-    <li
-      key={item.id}
-      className="list-group-item d-flex justify-content-between align-items-center"
-    >
-      {item.title}
-      <div className="d-grid gap-2 d-md-flex">
-        <button type="button" className="btn btn-outline-primary btn-sm">
-          <i className="bi bi-pencil text-info"></i>
-        </button>
-        <button
-          type="button"
-          className="btn btn-outline-primary btn-sm"
-          onClick={() => removeFromList(item.id)}
-        >
-          <i className="bi bi-trash text-info"></i>
-        </button>
-      </div>
-    </li>
+    <>
+      <li
+        key={item.id}
+        className="list-group-item d-flex justify-content-between align-items-center"
+      >
+        {item.title}
+        <div className="d-grid gap-2 d-md-flex">
+          <Button onClick={() => showModal(item.id, item.title)}>
+            <PencilIcon />
+          </Button>
+          <Button onClick={() => removeFromList(item.id)}>
+            <TrashIcon />
+          </Button>
+        </div>
+      </li>
+    </>
   );
 }

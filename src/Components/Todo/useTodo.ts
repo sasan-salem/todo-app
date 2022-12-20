@@ -27,7 +27,13 @@ export default function useTodo(){
         console.table(todoList);
     }
 
-    return [todoList, addToList, removeFromList];
+    function editFromList(id: number, title: string){
+        todoList.filter(i => i.id === id)[0].title=title;
+        console.log(`Edited: id: ${id} name: ${title}`);
+        
+    }
+
+    return [todoList, addToList, removeFromList, editFromList];
 }
 
 let lastId = (list: ITodo[]): number => list[list.length-1].id + 1;
