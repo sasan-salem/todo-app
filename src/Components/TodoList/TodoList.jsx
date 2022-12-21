@@ -2,22 +2,17 @@ import EditModal from "../Layout/EditModal";
 import TodoItem from "../TodoItem/TodoItem";
 import { useState } from "react";
 
-export default function TodoList({ todos, editTodo }) {
+export default function TodoList({ todos }) {
   const [show, setShow] = useState(false);
-  const [textModal, setTextModal] = useState("");
-  const [id, setId] = useState(0);
+  const [todo, setTodo] = useState({ id: 0, title: "" });
 
   return (
     <>
       <EditModal
         show={show}
-        textModal={textModal}
-        setTextModal={setTextModal}
-        handleClose={() => setShow(false)}
-        saveItem={() => {
-          editTodo(id, textModal);
-          setShow(false);
-        }}
+        setShow={setShow}
+        todo={todo}
+        setTodo={setTodo}
       />
 
       <div className="d-grid gap-3">
@@ -26,9 +21,8 @@ export default function TodoList({ todos, editTodo }) {
             <TodoItem
               key={index}
               item={item}
-              showModal={(id, title) => {
-                setId(id);
-                setTextModal(title);
+              showModal={(todo) => {
+                setTodo(todo);
                 setShow(true);
               }}
             />
@@ -38,15 +32,3 @@ export default function TodoList({ todos, editTodo }) {
     </>
   );
 }
-
-
-{/* <EditModal
-show={show}
-textModal={textModal}
-setTextModal={setTextModal}
-handleClose={() => setShow(false)}
-saveItem={() => {
-  editTodo(id, textModal);
-  setShow(false);
-}}
-/> */}
