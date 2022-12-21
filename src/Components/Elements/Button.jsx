@@ -1,4 +1,4 @@
-export function Button({children, onClick}){
+export function IconButton({children, onClick}){
     return(
         <button
         type="button"

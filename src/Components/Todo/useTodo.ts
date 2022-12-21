@@ -5,35 +5,35 @@ import TodoService from "../../Services/TodoService";
 
 export default function useTodo(){
 
-    const [todoList, updateTodoList] = useState<ITodo[]>([]);
+    const [todos, setTodos] = useState<ITodo[]>([]);
 
     useEffect(()=>{
         TodoService.GetAll()
         .then((response: IResponse)=>{
-            updateTodoList(response.data);
+            setTodos(response.data);
             console.table(response.data);
         });
     },[])
 
-    function addToList(text: string) {
-
-        updateTodoList([...todoList, { id: lastId(todoList), title: text }]);
-        console.table(todoList);
+    function addTodo(text: string) {
+        setTodos(addItemToTodos(todos, text));
+        console.table(todos);
       }
 
-    function removeFromList(id: number){
-        updateTodoList(todoList.filter(i => i.id !== id));
+    function removeTodo(id: number){
+        setTodos(todos.filter(i => i.id !== id));
         console.log(`${id} was deleted`);
-        console.table(todoList);
     }
 
-    function editFromList(id: number, title: string){
-        todoList.filter(i => i.id === id)[0].title=title;
+    function editTodo(id: number, title: string){
+        todos.filter(i => i.id === id)[0].title=title;
         console.log(`Edited: id: ${id} name: ${title}`);
         
     }
 
-    return [todoList, addToList, removeFromList, editFromList];
+    return [todos, addTodo, removeTodo, editTodo];
 }
 
-let lastId = (list: ITodo[]): number => list[list.length-1].id + 1;
+// Private
+const lastId = (list: ITodo[]): number => list[list.length-1].id + 1;
+const addItemToTodos = (list: ITodo[], text: string) => [...list, { id: lastId(list), title: text }];

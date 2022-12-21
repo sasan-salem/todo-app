@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-export default function TodoForm({ addToList }) {
+export default function TodoForm({ addTodo }) {
   const [text, setText] = useState("");
+  
   const handleSubmitToDo = (e)=>{
       e.preventDefault();
-      addToList(text)
+      addTodo(text)
       setText("")
   }
   return (

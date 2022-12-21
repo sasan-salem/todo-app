@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { TodoContext } from "../../Common/Context";
-import { Button } from "../Elements/Button";
+import { IconButton } from "../Elements/Button";
 import { PencilIcon, TrashIcon } from "../Elements/Icon";
 
 export default function TodoItem({ item, showModal }) {
-  const removeFromList = useContext(TodoContext);
+  const removeTodo = useContext(TodoContext);
   return (
     <>
       <li
@@ -13,12 +13,12 @@ export default function TodoItem({ item, showModal }) {
       >
         {item.title}
         <div className="d-grid gap-2 d-md-flex">
-          <Button onClick={() => showModal(item.id, item.title)}>
+          <IconButton onClick={() => showModal(item.id, item.title)}>
             <PencilIcon />
-          </Button>
-          <Button onClick={() => removeFromList(item.id)}>
+          </IconButton>
+          <IconButton onClick={() => removeTodo(item.id)}>
             <TrashIcon />
-          </Button>
+          </IconButton>
         </div>
       </li>
     </>

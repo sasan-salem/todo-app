@@ -5,16 +5,16 @@ import useTodo from "./useTodo";
 import { TodoContext } from "../../Common/Context";
 
 export default function Todo() {
-  const [todoList, addToList, removeFromList, editFromList] = useTodo();
+  const [todos, addTodo, removeTodo, editTodo] = useTodo();
 
   return (
     <>
       <div className="row justify-content-center">
         <div className="col-4">
           <Header />
-          <TodoForm addToList={addToList} />
-          <TodoContext.Provider value={removeFromList}>
-            <TodoList todoList={todoList} editFromList={editFromList}/>
+          <TodoForm addTodo={addTodo} />
+          <TodoContext.Provider value={removeTodo}>
+            <TodoList todos={todos} editTodo={editTodo}/>
           </TodoContext.Provider>
         </div>
       </div>
