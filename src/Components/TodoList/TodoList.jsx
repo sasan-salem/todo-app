@@ -2,7 +2,7 @@ import EditModal from "../Layout/EditModal";
 import TodoItem from "../TodoItem/TodoItem";
 import { useState } from "react";
 
-export default function TodoList({ todoList, removeFromList, editFromList }) {
+export default function TodoList({ todoList, editFromList }) {
   const [show, setShow] = useState(false);
   const [textModal, setTextModal] = useState("");
   const [id, setId] = useState(0);
@@ -26,7 +26,6 @@ export default function TodoList({ todoList, removeFromList, editFromList }) {
             <TodoItem
               key={index}
               item={item}
-              removeFromList={removeFromList}
               showModal={(id, title) => {
                 setId(id);
                 setTextModal(title);

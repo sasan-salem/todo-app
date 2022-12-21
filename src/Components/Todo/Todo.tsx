@@ -2,6 +2,7 @@ import TodoList from "../../Components/TodoList/TodoList";
 import Header from "../../Components/Layout/Header";
 import TodoForm from "../../Components/TodoForm/TodoForm";
 import useTodo from "./useTodo";
+import { TodoContext } from "../../Common/Context";
 
 export default function Todo() {
   const [todoList, addToList, removeFromList, editFromList] = useTodo();
@@ -12,7 +13,9 @@ export default function Todo() {
         <div className="col-4">
           <Header />
           <TodoForm addToList={addToList} />
-          <TodoList todoList={todoList} removeFromList={removeFromList} editFromList={editFromList}/>
+          <TodoContext.Provider value={removeFromList}>
+            <TodoList todoList={todoList} editFromList={editFromList}/>
+          </TodoContext.Provider>
         </div>
       </div>
     </>

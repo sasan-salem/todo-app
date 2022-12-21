@@ -1,7 +1,10 @@
+import { useContext } from "react";
+import { TodoContext } from "../../Common/Context";
 import { Button } from "../Elements/Button";
 import { PencilIcon, TrashIcon } from "../Elements/Icon";
 
-export default function TodoItem({ item, removeFromList, showModal }) {
+export default function TodoItem({ item, showModal }) {
+  const removeFromList = useContext(TodoContext);
   return (
     <>
       <li
