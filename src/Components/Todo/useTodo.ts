@@ -5,12 +5,18 @@ import TodoService from "../../Services/TodoService";
 
 export default function useTodo() {
   const [todos, setTodos] = useState<ITodo[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
-    TodoService.GetAll().then((response: IResponse) => {
-      setTodos(response.data);
-      console.table(response.data);
-    });
+    TodoService.GetAll()
+      .then((response: IResponse) => {
+        setErrorMessage("");
+        setTodos(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+        setErrorMessage(e.message)
+      });
   }, []);
 
   function addTodo(text: string) {
@@ -28,7 +34,7 @@ export default function useTodo() {
     console.table(todos);
   }
 
-  return [todos, addTodo, removeTodo, editTodo];
+  return [todos, addTodo, removeTodo, editTodo, errorMessage];
 }
 
 // Private
