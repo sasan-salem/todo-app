@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
-import IResponse from "../../Models/IResponse";
 import ITodo from "../../Models/ITodo";
 import TodoService from "../../Services/TodoService";
+import { AxiosError } from "axios";
 
 export default function useTodo() {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
+  const getTodos = async () => {
+    try {
+      setTodos(await TodoService.GetAll());
+      setErrorMessage("");
+    } catch (e) {
+      setErrorMessage((e as AxiosError).message);
+    }
+  };
+
   useEffect(() => {
-    TodoService.GetAll()
-      .then((response: IResponse) => {
-        setErrorMessage("");
-        setTodos(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-        setErrorMessage(e.message)
-      });
+    getTodos();
   }, []);
 
   function addTodo(text: string) {
@@ -37,7 +38,8 @@ export default function useTodo() {
   return [todos, addTodo, removeTodo, editTodo, errorMessage];
 }
 
-// Private
+// Privates
+
 const lastId = (list: ITodo[]): number => list[list.length - 1].id + 1;
 
 const addItemToTodos = (list: ITodo[], text: string) => [
