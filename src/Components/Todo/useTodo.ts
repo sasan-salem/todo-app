@@ -22,27 +22,32 @@ export default function useTodo() {
 
   function addTodo(text: string) {
     setTodos(addItemToTodos(todos, text));
+    console.log(`${text} added`);
   }
 
   function removeTodo(id: number) {
     setTodos(todos.filter((i) => i.id !== id));
-    console.log(`${id}  was deleted`);
+    console.log(`${id} deleted`);
   }
 
   function editTodo(todo: ITodo) {
-    todos.filter((i) => i.id === todo.id)[0].title = todo.title;
-    console.log(`Edited: id: ${todo.id} name: ${todo.title}`);
-    console.table(todos);
+    const updatedTodos = todos.map((item) => {
+      if (item.id === todo.id) {
+        return { ...item, title: todo.title };
+      } else return item;
+    });
+    setTodos(updatedTodos);
+    console.log(`updated to: ${todo.title}`);
   }
 
   return [todos, addTodo, removeTodo, editTodo, errorMessage];
 }
 
-// Privates
+// Privates Functions
 
 const lastId = (list: ITodo[]): number => list[list.length - 1].id + 1;
 
-const addItemToTodos = (list: ITodo[], text: string) => [
-  ...list,
-  { id: lastId(list), title: text },
+const addItemToTodos = (list: ITodo[], text: string): ITodo[] => 
+[
+  ...list, { id: lastId(list), title: text },
 ];

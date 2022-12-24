@@ -10,6 +10,10 @@ HttpServer.interceptors.response.use(
   }
 );
 
+/**
+ * Here there are anly general verbs which every request can call them.
+ * write other verbs like post, delete, ... if you need in project.
+ */
 const requests = {
   get: <T>(url: string) => HttpServer.get<T>(url).then((response) => response.data),
 };
