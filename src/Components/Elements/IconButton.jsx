@@ -2,7 +2,7 @@ export function IconButton({children, onClick}){
     return(
         <button
         type="button"
-        className="btn btn-outline-primary btn-sm"
+        className="btn btn-outline-secondary btn-sm"
         onClick={() => onClick()}
       >
         {children}

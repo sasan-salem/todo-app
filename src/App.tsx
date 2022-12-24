@@ -1,5 +1,13 @@
-import Todo from './Components/Todo/Todo';
+import Footer from "./Components/Layout/Footer";
+import Header from "./Components/Layout/Header";
+import Todo from "./Components/Todo/Todo";
 
 export default function App() {
-  return <Todo/>
+  return (
+    <>
+      <Header />
+      <Todo />
+      <Footer />
+    </>
+  );
 }
