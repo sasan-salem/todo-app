@@ -2,7 +2,6 @@ import { AxiosError } from "axios";
 import HttpServer from "../Common/HttpServer";
 import ITodo from "../Models/ITodo";
 
-
 HttpServer.interceptors.response.use(
   async (response) => response,
   (error: AxiosError) => {
@@ -16,7 +15,7 @@ const requests = {
 };
 
 function GetAll() {
-  return requests.get<Array<ITodo>>("/0c131182-a6ef-4083-9bbd-e57f67e7b399");
+  return requests.get<Array<ITodo>>("/84b0af24-ecec-42fe-8855-f6983fb6c5e9");
 }
 
 const TodoService = {

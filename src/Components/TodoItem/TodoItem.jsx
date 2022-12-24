@@ -10,7 +10,8 @@ export default function TodoItem({ item, showModal }) {
     <>
       <li
         key={item.id}
-        className="list-group-item d-flex justify-content-between align-items-center"
+        className="list-group-item d-flex justify-content-between align-items-center" 
+        data-testid={`todoItem-${item.id}`}
       >
         {item.title}
         <div className="d-grid gap-2 d-md-flex">
