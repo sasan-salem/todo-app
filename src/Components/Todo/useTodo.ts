@@ -45,7 +45,7 @@ export default function useTodo() {
 
 // Privates Functions
 
-const lastId = (list: ITodo[]): number => list[list.length - 1].id + 1;
+const lastId = (list: ITodo[]): number => list.length === 0 ? 1 : list[list.length - 1].id + 1;
 
 const addItemToTodos = (list: ITodo[], text: string): ITodo[] => 
 [
