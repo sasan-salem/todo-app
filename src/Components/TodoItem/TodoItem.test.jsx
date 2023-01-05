@@ -7,12 +7,12 @@ const item = {
   title: "test1",
 };
 
-const removeTodo = jest.fn();
+const dispatch = jest.fn();
 const showModal = jest.fn();
 
 test("should have the data", () => {
   render(
-    <TodoContext.Provider value={{ removeTodo: removeTodo }}>
+    <TodoContext.Provider value={dispatch}>
       <TodoItem key={1} item={item} showModal={showModal} />
     </TodoContext.Provider>
   );
@@ -22,19 +22,19 @@ test("should have the data", () => {
 
 test("delete button", () => {
   render(
-    <TodoContext.Provider value={{ removeTodo: removeTodo }}>
+    <TodoContext.Provider value={dispatch}>
       <TodoItem key={1} item={item} showModal={showModal} />
     </TodoContext.Provider>
   );
   const deleteButton = within(screen.getByTestId("todoItem-1")).getAllByRole("button")[1];
   expect(deleteButton).toBeInTheDocument();
   fireEvent(deleteButton, new MouseEvent("click", { bubbles: true }));
-  expect(removeTodo).toHaveBeenCalledWith(1);
+  expect(dispatch).toHaveBeenCalledWith({"payload": 1, "type": 2});
 });
 
 test("edit button", () => {
   render(
-    <TodoContext.Provider value={{ removeTodo: removeTodo }}>
+    <TodoContext.Provider value={dispatch}>
       <TodoItem key={1} item={item} showModal={showModal} />
     </TodoContext.Provider>
   );

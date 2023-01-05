@@ -1,11 +1,12 @@
-import { useContext } from "react";
+import { useContext, React } from "react";
 import { TodoContext } from "../../Common/Context";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import TodoAction from "../../Common/todoAction";
 
 export default function EditModal({ show, setShow, todo, setTodo }) {
-  const { editTodo } = useContext(TodoContext);
+  const dispatch = useContext(TodoContext);
 
   return (
     <Modal show={show} onHide={() => setShow(false)}>
@@ -28,7 +29,7 @@ export default function EditModal({ show, setShow, todo, setTodo }) {
         <Button
           variant="primary"
           onClick={() => {
-            editTodo(todo);
+            dispatch({type: TodoAction.edit, payload: todo});
             setShow(false);
           }}
         >

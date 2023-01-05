@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { TodoContext } from "../../Common/Context";
 import { IconButton } from "../Elements/IconButton";
 import { PencilIcon, TrashIcon } from "../Elements/Icon";
+import TodoAction from "../../Common/todoAction";
 
 export default function TodoItem({ item, showModal }) {
-  const { removeTodo } = useContext(TodoContext);
+  const  dispatch = useContext(TodoContext);
 
   return (
     <>
@@ -18,7 +19,7 @@ export default function TodoItem({ item, showModal }) {
           <IconButton onClick={() => showModal(item)}>
             <PencilIcon />
           </IconButton>
-          <IconButton onClick={() => removeTodo(item.id)}>
+          <IconButton onClick={() => dispatch({type: TodoAction.remove, payload: item.id})}>
             <TrashIcon />
           </IconButton>
         </div>

@@ -1,13 +1,18 @@
+import { useContext } from "react";
+import { TodoContext } from "../../Common/Context";
 import { useState } from "react";
+import TodoAction from "../../Common/todoAction";
 
-export default function TodoForm({ addTodo }) {
+export default function TodoForm() {
+  const dispatch = useContext(TodoContext);
   const [text, setText] = useState("");
 
   const handleSubmitToDo = (e) => {
     e.preventDefault();
-    addTodo(text);
+    dispatch({type: TodoAction.create, payload: text});
     setText("");
   };
+  
   return (
     <form className="input-group mb-3" onSubmit={handleSubmitToDo}>
       <input
