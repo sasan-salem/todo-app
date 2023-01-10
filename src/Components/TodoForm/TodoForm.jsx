@@ -1,25 +1,24 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { TodoContext } from "../../Common/Context";
-import { useState } from "react";
 import TodoAction from "../../Common/todoAction";
 
 export default function TodoForm() {
   const dispatch = useContext(TodoContext);
-  const [text, setText] = useState("");
+  const txtboxRef = useRef();
 
   const handleSubmitToDo = (e) => {
     e.preventDefault();
+    let text = txtboxRef.current.value;
     dispatch({type: TodoAction.create, payload: text});
-    setText("");
+    txtboxRef.current.value = "";
   };
   
   return (
     <form className="input-group mb-3" onSubmit={handleSubmitToDo}>
       <input
         className="form-control"
-        value={text}
+        ref={txtboxRef}
         type="text"
-        onChange={(e) => setText(e.currentTarget.value)}
       />
       <button className="btn btn-outline-secondary" type="submit">
         Insert
